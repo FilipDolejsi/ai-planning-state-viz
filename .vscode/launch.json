@@ -15,7 +15,7 @@
             "name": "Launch page.html in Microsoft Edge (EdgeHTML)",
             "type": "edge",
             "request": "launch",
-            "file": "${workspaceFolder}/page.html"
+            "file": "${workspaceFolder}/blocks/page.html"
         }
     ]
 }

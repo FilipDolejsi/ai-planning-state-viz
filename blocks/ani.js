@@ -19,8 +19,6 @@ function showStateJson(stateJson) {
     while (canvas.firstChild) {
         canvas.removeChild(canvas.firstChild);
     }
-    var gripElement = createGripper();
-    canvas.appendChild(gripElement)
     // for each tower.. and each block, call createBlock and add as a child to 'canvas'
     for (let towerIndex = 0; towerIndex < towers.length; towerIndex++) {
         const tower = towers[towerIndex];
@@ -29,30 +27,57 @@ function showStateJson(stateJson) {
         for (let level = 0; level < tower.length; level++) {
             const blockColor = tower[level];
             console.log(`Tower: ${towerIndex}, Block: ${level}, ${blockColor}`);
-            var blockElement = createBlock(blockColor, towerIndex, level);
+            var blockElement = createTowerBlock(blockColor, towerIndex, level);
             canvas.appendChild(blockElement);
         }
     }
-    // var onTablePredicates = stateJson.predicates.filter(p => p.name === "ontable");
-    // console.log(onTablePredicates);
+
+    var gripElement = createGripper(stateJson.predicates.find(p => p.name === "handempty"));
+    canvas.appendChild(gripElement)
+
+    var holdingPredicate = stateJson.predicates.find(p => p.name === "holding");
+    if (holdingPredicate) {
+        var color = holdingPredicate.args[0];
+        console.log(`Paint the block ${color} inside the gripper.`);
+        canvas.appendChild(createGripperBlock(color));
+    }
+    else {
+        console.log('gripper empty');
+    }
 }
 
-function createBlock(color, tower, level) {
+function createTowerBlock(color, tower, level) {
     // <div class="block" style="left:0px; bottom:0px; background-color:red" />
-    var element = document.createElement("div");
-    element.className = "block";
-    element.style = "bottom: " + (50 * level + 1) + "px; left: " + (50 * tower + 1) + "px; background-color: " + color;
+    var element = createBlock(color);
+    element.style.bottom = `${50 * level + 1}px`
+    element.style.left = `${50 * tower + 1}px;`;
     element.setAttribute("tower", tower);
     element.setAttribute("level", level);
     return element;
 }
 
-function createGripper() {
+function createGripperBlock(color) {
+    var element = createBlock(color);
+    element.style.top = "50px"
+    element.style.left = "27px";
+    return element;
+}
+
+function createBlock(color) {
+    // <div class="block" style="background-color:red" />
+    var element = document.createElement("div");
+    element.className = "block";
+    element.style.backgroundColor = color;
+    return element;
+}
+
+function createGripper(empty) {
     // <img class="gripper" src="gripper-opened-implicit.svg">
     var element = document.createElement("img");
     element.className = "gripper";
     element.style = "top:0px; left:0px;"
-    element.setAttribute("src", "gripper-opened-implicit.svg");
+    var image = empty ? "gripper-opened-implicit.svg" : "gripper-closed.svg";
+    element.setAttribute("src", image);
     return element;
 }
 
