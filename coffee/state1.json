@@ -1,0 +1,24 @@
+{
+    "predicates": [
+        {
+            "name": "heating"
+        },
+        {
+            "name": "pumping"
+        }
+    ],
+    "functions": [
+        {
+            "name": "temperature",
+            "value": 59.3
+        },
+        {
+            "name": "level-in-cup",
+            "value": 44
+        },
+        {
+            "name": "cup-capacity",
+            "value": 100
+        }
+    ]
+}

@@ -33,7 +33,7 @@ function showStateJson(stateJson) {
     }
 
     var gripElement = createGripper(stateJson.predicates.find(p => p.name === "handempty"));
-    canvas.appendChild(gripElement)
+    canvas.appendChild(gripElement);
 
     var holdingPredicate = stateJson.predicates.find(p => p.name === "holding");
     if (holdingPredicate) {
@@ -76,7 +76,7 @@ function createGripper(empty) {
     var element = document.createElement("img");
     element.className = "gripper";
     element.style = "top:0px; left:0px;"
-    var image = empty ? "gripper-opened-implicit.svg" : "gripper-closed.svg";
+    var image = empty ? "gripper-opened.svg" : "gripper-closed.svg";
     element.setAttribute("src", image);
     return element;
 }
