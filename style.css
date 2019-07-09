@@ -1,0 +1,25 @@
+p {
+    font-family: cursive
+}
+
+div.block {
+    width: 47px;
+    height: 47px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    position: absolute;
+}
+
+div.canvas {
+    width: 500px;
+    height: 500px;
+    background-color: cyan;
+    float: left; 
+    position: relative;
+}
+
+img.gripper {
+    position: relative;
+    height: 90px;
+}

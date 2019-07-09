@@ -1,0 +1,26 @@
+{
+    "predicates": [
+        {
+            "name": "on",
+            "args": [
+                "blue",
+                "green"
+            ]
+        },
+        {
+            "name": "ontable",
+            "args": [
+                "green"
+            ]
+        },
+        {
+            "name": "clear",
+            "args": [
+                "blue"
+            ]
+        },
+        {
+            "name": "handempty"
+        }
+    ]
+}
